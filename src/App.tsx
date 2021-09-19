@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Modal from './components/Modal';
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const close = () => {
+    setModalOpen(false);
+  };
+
+  function open() {
+    setModalOpen(true);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="save-button"
+        onClick={() => (modalOpen ? close() : open())}>
+        Launch Modal
+      </motion.button>
+      {modalOpen && (
+        <Modal modalOpen={modalOpen} handleClose={close} text={'사람 여기있어요~~'} />
+      )}
+
+      <AnimatePresence initial={false} exitBeforeEnter={true} onExitComplete={() => null}>
+        {modalOpen && (
+          <Modal modalOpen={modalOpen} handleClose={close} text={`사람 여기있어요~~`} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
