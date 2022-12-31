@@ -18,6 +18,9 @@ node.js v16 이상이어야 됩니다.
 
 nx패키지가 전역으로 설치되어 있어야 합니다.
 
+`npm i -g nx`
+`yarn global add nx`
+
 `git clone https://github.com/Dellil/chanh-ui.git` 으로 프로젝트를 클론 받습니다.
 
 yarn 혹은 npm을 사용하여 필요한 라이브러리를 받습니다.
